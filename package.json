@@ -1,0 +1,28 @@
+{
+  "name": "classy-svg",
+  "version": "0.1.0",
+  "description": "Add classes to SVG paths based on fill color",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sjmarshy/classy-svg.git"
+  },
+  "author": "Sam Marshall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sjmarshy/classy-svg/issues"
+  },
+  "homepage": "https://github.com/sjmarshy/classy-svg",
+  "dependencies": {
+    "bluebird": "^2.9.4",
+    "commander": "^2.6.0",
+    "hapi": "^8.1.0",
+    "open": "0.0.5"
+  },
+  "jshintConfig": {
+      "enforceall": true
+  }
+}
