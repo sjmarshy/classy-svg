@@ -1,5 +1,7 @@
-var hapi   = require('hapi');
+var hapi    = require('hapi');
 var Promise = require('bluebird');
+var fs      = require('fs');
+var React   = require('react');
 
 var server = new hapi.Server();
 
@@ -13,11 +15,27 @@ module.exports = function (port, filename) {
             path: '/',
             handler: function (req, res) {
 
-                res('better');
-                
+                var SVG = 
+                    React.createFactory(
+                            require('../react/components/SVG.react'));
+
+                fs.readFile(filename, function (err, data) {
+
+                    if (err) {
+                        res(err);
+                    }
+
+                    return res(
+                            React.renderToString(
+                                SVG({
+                                    source: data.toString()
+                                })
+                            )
+                    );
+                    
+                });
             }
         });
-            
 
         server.route({
             method: 'GET',

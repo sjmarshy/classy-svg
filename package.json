@@ -20,9 +20,8 @@
     "bluebird": "^2.9.4",
     "commander": "^2.6.0",
     "hapi": "^8.1.0",
-    "open": "0.0.5"
+    "open": "0.0.5",
+    "react": "^0.12.2"
   },
-  "jshintConfig": {
-      "enforceall": true
-  }
+  "jshintConfig": {}
 }
