@@ -19,12 +19,14 @@
   "homepage": "https://github.com/sjmarshy/classy-svg",
   "dependencies": {
     "bluebird": "^2.9.4",
+    "chroma-js": "^0.6.3",
     "commander": "^2.6.0",
     "handlebars": "^2.0.0",
     "hapi": "^8.1.0",
     "open": "0.0.5",
     "react": "^0.12.2",
-    "superagent": "^0.21.0"
+    "superagent": "^0.21.0",
+    "underscore": "^1.7.0"
   },
   "jshintConfig": {}
 }

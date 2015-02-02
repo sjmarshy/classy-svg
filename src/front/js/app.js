@@ -3,8 +3,8 @@ var request = require('superagent');
 
 var rpt = React.PropTypes;
 
-var SVG = React.createFactory(
-        require('../../react/components/SVG.react'));
+var SVGPage = React.createFactory(
+        require('../../react/components/SVGPage.react'));
 
 var Index = React.createClass({
 
@@ -16,7 +16,7 @@ var Index = React.createClass({
 
     render: function () {
 
-        return SVG({
+        return SVGPage({
             source: this.props.svg
         });
     }
@@ -29,7 +29,8 @@ request('/image', function (err, response) {
         throw err || new Error(response.text);
     }
 
-    return React.render(Index({ svg: response.text }),
+    return React.render(
+            React.createFactory(Index)({ svg: response.text }),
             document.querySelector('[data-r-app]'));
 
 });

@@ -25,6 +25,16 @@ function getIndex() {
     return getFile(path.join(__dirname, '../front/templates/index.html'));
 }
 
+function reactString (component) {
+    return React.renderToString(component);
+}
+
+function fillTemplate (template, content) {
+    return template({
+        content: content
+    });
+}
+
 module.exports = function (port, filename) {
 
     return new Promise(function (resolve, reject) {
@@ -39,9 +49,8 @@ module.exports = function (port, filename) {
 
             handler: function (req, res) {
 
-                var SVG = 
-                    React.createFactory(
-                            require('../react/components/SVG.react'));
+                var SVGPage = React.createFactory(
+                            require('../react/components/SVGPage.react'));
 
                 getIndex()
                     .then(function (index) {
@@ -59,22 +68,16 @@ module.exports = function (port, filename) {
                     })
                     .then(function (resources) {
 
-                        var tmplt = handlebars.
-                            compile(resources.index);
-
-                        var page = tmplt({
-
-                            content: React.renderToString(
-
-                                             SVG({
-                                                 source: resources.svg
-                                             }))
-                        });
+                        var index = handlebars.compile(resources.index);
+                        var page  = fillTemplate(index,
+                                reactString(SVGPage({ source: resources.svg })));
 
                         return res(page);
 
                     }, function (err) {
-                        res(err);
+
+                        return res(err);
+
                     });
             }
         });
