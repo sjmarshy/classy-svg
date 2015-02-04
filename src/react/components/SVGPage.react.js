@@ -1,14 +1,14 @@
-var React  = require('react');
+var React = require('react');
 var chroma = require('chroma-js');
-var _      = require('underscore');
+var _ = require('underscore');
 
 var dom = React.DOM;
 var rpt = React.PropTypes;
 
-var SVG        = React.createFactory(require('./SVG.react.js'));
+var SVG = React.createFactory(require('./SVG.react.js'));
 var ColorBlock = React.createFactory(require('./ColorBlock.react'));
 
-function _isHex (str) {
+function _isHex(str) {
     return str.search(/(?:^#[A-F0-9]{6})|(?:^#[A-F0-9]{3}$)/) !== -1;
 }
 
@@ -35,32 +35,32 @@ var SVGPage = React.createClass({
         source: rpt.string.isRequired
     },
 
-    componentDidMount: function () {
+    componentDidMount: function() {
         this.forceUpdate();
     },
 
-    _getSVGColors: function () {
+    _getSVGColors: function() {
 
         var node = this.refs.svg.getDOMNode();
 
         return Array.prototype.slice.apply(node.querySelectorAll('[fill]')).
-            filter(function (child) {
-                return _isHex(child.getAttribute('fill'));
-            }).
-            map(function (child) {
-                return child.getAttribute('fill');
-            });
+        filter(function(child) {
+            return _isHex(child.getAttribute('fill'));
+        }).
+        map(function(child) {
+            return child.getAttribute('fill');
+        });
     },
 
-    _selectColor: function (color) {
+    _selectColor: function(color) {
 
         this.setState({
             selectedColor: color
         });
-        
+
     },
 
-    render: function () {
+    render: function() {
 
         var colors;
         var colorBlocks;
@@ -77,18 +77,20 @@ var SVGPage = React.createClass({
             colors = [];
         }
 
-        colorBlocks = colors.map(function (col, i) {
+        colorBlocks = colors.map(function(col, i) {
 
-            return dom.div({ style: style.cb },
-                    ColorBlock({
-                        key: 'c-' + i,
-                        color: col,
-                        onClick: _this._selectColor
-                    }),
-                    dom.p({}, col));
-            
+            return dom.div({
+                    style: style.cb
+                },
+                ColorBlock({
+                    key: 'c-' + i,
+                    color: col,
+                    onClick: _this._selectColor
+                }),
+                dom.p({}, col));
+
         });
-        
+
 
 
         if (this.state && this.state.hasOwnProperty('selectedColor')) {
@@ -97,10 +99,12 @@ var SVGPage = React.createClass({
         }
 
         return dom.div({},
-                dom.div({ style: style.page }, colorBlocks),
-                SVG(_.extend(svgProps, {
-                    changeList: changeList
-                })));
+            dom.div({
+                style: style.page
+            }, colorBlocks),
+            SVG(_.extend(svgProps, {
+                changeList: changeList
+            })));
     }
 
 });

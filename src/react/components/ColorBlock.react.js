@@ -1,5 +1,5 @@
 var React = require('react');
-var _     = require('underscore');
+var _ = require('underscore');
 
 var rpt = React.PropTypes;
 var dom = React.DOM;
@@ -21,35 +21,35 @@ var ColorBlock = React.createClass({
         onClick: rpt.func
     },
 
-    getDefaultProps: function () {
+    getDefaultProps: function() {
 
         return {
-            onClick: function () {}
+            onClick: function() {}
         };
-        
+
     },
 
-    _style: function () {
+    _style: function() {
 
         return _.extend(style.colorBlock, {
             backgroundColor: this.props.color
         });
-        
+
     },
 
-    _onClick: function (e) {
+    _onClick: function(e) {
 
         e.preventDefault();
         e.stopPropagation();
 
         this.props.onClick(this.props.color);
-        
+
     },
 
-    render: function () {
+    render: function() {
         return dom.div({
             onClick: this._onClick,
-            style: this._style() 
+            style: this._style()
         });
     }
 
